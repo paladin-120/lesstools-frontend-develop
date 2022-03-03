@@ -1,0 +1,46 @@
+@import '../../styles/mixins/container.scss';
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/media.scss';
+
+.section {
+  padding: 30px 0;
+  background: var(--black);
+  position: relative;
+  @include b(extramobile) {
+    background: none;
+  }
+}
+
+.container {
+  @include container(3000px);
+}
+
+.ad {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.info {
+  margin-bottom: 30px;
+  @include flex(row, center, space-between, nowrap);
+  @include b(mobile) {
+    flex-wrap: wrap-reverse;
+  }
+
+  &_right {
+    @include b(mobile) {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
+
+  &_title {
+    font-size: 31px;
+    margin-bottom: 5px;
+  }
+
+  &_subtitle {
+    font-size: 14px;
+    color: var(--grey);
+  }
+}

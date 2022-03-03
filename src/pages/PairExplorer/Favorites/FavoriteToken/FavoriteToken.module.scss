@@ -1,0 +1,33 @@
+@import '../../../../styles/mixins/flex.scss';
+
+.token {
+  border-radius: 8px;
+  transition: 0.2s ease;
+  & + & {
+    margin-top: 5px;
+  }
+  &:hover {
+    background-color: #1f1c23;
+  }
+}
+
+.token_inner {
+  @include flex(row, center, space-between);
+  padding: 13px 8px;
+}
+
+.right {
+  @include flex(row, center, normal);
+}
+
+.cost {
+  font-weight: bold;
+}
+
+.close {
+  margin-left: 10px;
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}

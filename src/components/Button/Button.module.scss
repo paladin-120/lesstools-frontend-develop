@@ -1,0 +1,51 @@
+@import '../../styles/mixins/gradient-text.scss';
+@import '../../styles/mixins/flex.scss';
+
+.button {
+  @include flex(row, center, center, nowrap);
+  background-color: transparent;
+  border: 2px solid var(--blue);
+  border-radius: 2px;
+  color: #fff;
+  padding: 10px;
+  height: 42px;
+  font-size: 16px;
+  letter-spacing: -0.531474px;
+  cursor: pointer;
+  transition: 0.4s ease;
+  text-decoration: none;
+
+  &.filled,
+  &:hover {
+    background-color: var(--blue);
+    color: #fff;
+  }
+
+  &.big {
+    padding: 20px;
+    height: inherit;
+  }
+
+  &.gradient {
+    span {
+      transition: 0.4s ease;
+      @include gradient-text;
+    }
+    border: 1px solid transparent;
+    border-image: var(--gradient);
+    border-image-slice: 1;
+
+    &:hover {
+      background: var(--gradient);
+      border: 1px solid #000;
+    }
+  }
+
+  &:hover {
+    &.gradient {
+      span {
+        @include gradient-text(#fff);
+      }
+    }
+  }
+}

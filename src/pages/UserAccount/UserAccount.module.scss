@@ -1,0 +1,147 @@
+@import '../../styles/mixins/container.scss';
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/gradient-text.scss';
+@import '../../styles/mixins/media.scss';
+
+.page {
+  padding: 30px 0;
+  background: var(--black);
+}
+
+.container {
+  @include container(1390px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block {
+  width: 100%;
+  max-width: 800px;
+  background: var(--dark-soft);
+  border-radius: 10px;
+  text-align: center;
+
+  letter-spacing: -0.6px;
+  color: #ffffff;
+
+  margin-bottom: 30px;
+
+  &_inner {
+    padding: 50px 15px 40px;
+  }
+
+  &_title {
+    font-size: 36px;
+
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.verification {
+      &::before {
+        content: '';
+        background: url('../../assets/img/icons/verification.svg') 0 0 no-repeat;
+        width: 23px;
+        height: 21px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &_subtitle {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+
+  &_subtext {
+    font-size: 18px;
+    line-height: 23px;
+    color: #ffffff;
+    opacity: 0.5;
+  }
+
+  &_header {
+    background-color: var(--grey-light-soft);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px 10px;
+    line-height: 1.5;
+    font-size: 20px;
+  }
+
+  &_wallet {
+    font-size: 27px;
+    margin-bottom: 20px;
+    word-break: break-all;
+    span {
+      @include gradient-text;
+    }
+  }
+
+  &_balance {
+    font-size: 36px;
+    margin-bottom: 20px;
+    span {
+      @include gradient-text;
+    }
+  }
+
+  &_button {
+    cursor: pointer;
+    display: inline-block;
+    background: var(--purple);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+
+    &.grey {
+      color: var(--grey);
+      border: 1px solid #6f45ff;
+    }
+  }
+
+  &_group {
+    margin-bottom: 20px;
+    &__text {
+      text-align: center;
+      font-size: 16px;
+      & + & {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+// verif page
+.check {
+  @include flex(row, center, center);
+  margin-bottom: 20px;
+  margin-top: 50px;
+  .block_title {
+    margin-bottom: 0;
+  }
+  &_mark {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background: #23262f;
+    border: 2px solid #353945;
+    border-radius: 4px;
+    margin-right: 10px;
+    @include flex(row, center, center);
+    img {
+      display: none;
+    }
+    &.active {
+      background: var(--gradient);
+      border: none;
+      img {
+        display: block;
+      }
+    }
+  }
+}

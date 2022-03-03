@@ -1,0 +1,138 @@
+@import '../../../styles/mixins/flex.scss';
+@import '../../../styles/mixins/media.scss';
+
+.block {
+  overflow: hidden;
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 75px;
+  @include b(mobile) {
+    padding: 30px 0;
+  }
+  background: radial-gradient(
+      47.2% 137.33% at 51.49% 51.91%,
+      rgba(111, 69, 255, 0) 45.43%,
+      rgba(255, 99, 101, 0.2) 100%
+    ),
+    linear-gradient(90deg, #040404 0%, #1c0e40 100%);
+}
+
+.buttons {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  z-index: 5;
+  @include flex(row, center);
+  @include b(890) {
+    top: 57%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+}
+
+.button {
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(90deg, #040404 0%, #1c0e40 100%);
+  @include flex(row, center, center);
+  @include b(890) {
+    background: var(--gradient);
+    svg path {
+      stroke: #fff;
+    }
+  }
+
+  &:first-child {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[disabled] {
+    border: 2px solid var(--blue);
+    opacity: 0.4;
+    background: none;
+  }
+
+  &:first-child {
+    margin-right: 8px;
+  }
+}
+
+.title {
+  font-size: 40px;
+  text-align: center;
+  color: var(--grey);
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.slider {
+  padding: 0 50px;
+  position: relative;
+  @include b(mobile) {
+    padding: 0 10px;
+  }
+
+  &.fade {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// slide
+.slide {
+  cursor: grab;
+
+  &_header {
+    @include flex(row, center);
+    margin-bottom: 20px;
+
+    &__img {
+      margin-right: 8px;
+      height: 32px;
+    }
+
+    &__title {
+      font-size: 24px;
+      color: var(--blue);
+      text-transform: uppercase;
+    }
+  }
+
+  &_body {
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(26, 13, 59, 0) 0%, #1a0d3a 100%);
+    }
+  }
+
+  &_footer {
+    max-width: 70%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--grey);
+  }
+}

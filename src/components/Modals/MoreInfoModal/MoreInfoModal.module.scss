@@ -1,0 +1,18 @@
+@import '../../../styles//mixins/flex.scss';
+
+.infos {
+  margin-bottom: 40px;
+}
+
+.info {
+  @include flex(row, center, space-between);
+  font-size: 15px;
+
+  & + & {
+    margin-top: 6px;
+  }
+}
+
+.right {
+  @include flex(row, center, flex-end);
+}

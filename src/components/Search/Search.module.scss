@@ -1,0 +1,57 @@
+@import '../../styles/mixins/flex.scss';
+
+.input {
+  width: 100%;
+  position: relative;
+  z-index: 200;
+
+  &_img {
+    position: absolute;
+    top: 7px;
+    left: 24px;
+    img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  input {
+    box-sizing: border-box;
+    color: var(--input-color);
+    font-size: 15px;
+    padding: 9px 20px 9px 55px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark-soft);
+    border: none;
+    letter-spacing: 0.035em;
+    &::placeholder {
+      color: var(--grey);
+    }
+  }
+
+  &.big {
+    @include flex(row, center, flex-start, nowrap);
+    gap: 10px;
+    box-sizing: border-box;
+    color: var(--input-color);
+    font-size: 15px;
+    padding: 20px 20px 20px 20px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark-soft);
+    letter-spacing: 0.035em;
+
+    input {
+      border: none;
+      background-color: var(--dark-soft);
+      max-width: 500px;
+      padding: 0;
+    }
+
+    .input_img {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  }
+}

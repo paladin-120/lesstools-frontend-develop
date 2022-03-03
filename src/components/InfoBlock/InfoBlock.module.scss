@@ -1,0 +1,144 @@
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/media.scss';
+@import '../../styles/mixins/container.scss';
+
+.info_inner,
+.left,
+.cell,
+.table {
+  @include flex(row, center, normal, nowrap);
+}
+
+.info {
+  background-color: var(--black);
+  overflow: hidden;
+  padding: 6px 30px 6px 35px;
+  width: 100%;
+  &:hover {
+    .info_inner {
+      animation-play-state: paused;
+    }
+  }
+  @include b(tablet) {
+    padding: 6px 10px;
+  }
+  @include b(850) {
+    &_inner {
+      animation: scroll 25s infinite linear forwards;
+      width: 700px;
+    }
+  }
+}
+
+.cell {
+  padding: 5px 28px;
+  @include b(tablet) {
+    padding: 6px 16px;
+  }
+  font-weight: bold;
+  font-size: 15px;
+  color: var(--grey);
+  @include b(850) {
+    &:first-child {
+      color: #fff;
+      border-right: 2px solid #fff;
+    }
+
+    &:nth-child(2) {
+      border-left: 2px solid #fff;
+      border-right: none;
+    }
+  }
+  &:first-child {
+    border-right: none;
+  }
+  &:nth-child(2) {
+    border-right: 2px solid #fff;
+  }
+
+  &_img {
+    margin-right: 5px;
+    img {
+      height: 24px;
+    }
+  }
+
+  &_text {
+    white-space: nowrap;
+  }
+}
+
+.table_cell {
+  font-size: 14px;
+  letter-spacing: -0.531474px;
+  color: var(--grey);
+  span {
+    color: var(--purple);
+  }
+  margin-right: 20px;
+  > a {
+    @include flex(row, center, center, nowrap);
+    gap: 3px;
+    width: max-content;
+  }
+}
+
+.right {
+  overflow: hidden;
+  flex-grow: 1;
+  @include b(850) {
+    overflow: visible;
+    margin-right: 60px;
+  }
+}
+// бегущая строка
+@keyframes scroll {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(-200%, 0);
+  }
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: scroll 25s infinite linear forwards;
+  @include b(tablet) {
+    width: 750px;
+  }
+  &:hover {
+    animation-play-state: paused;
+  }
+  @include b(850) {
+    animation: none;
+  }
+}
+
+.metamask_link {
+  border-radius: 10px;
+  background: var(--purple);
+  padding: 2px;
+  cursor: pointer;
+
+  // &__inner {
+  @include flex(row, center, space-between, nowrap);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 17px;
+  &_img {
+    margin-right: 10px;
+  }
+  // }
+  &.mobile {
+    display: none;
+    @include b(850) {
+      display: flex;
+    }
+  }
+  &.desktop {
+    @include b(850) {
+      display: none;
+    }
+  }
+}

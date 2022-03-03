@@ -1,0 +1,348 @@
+@import '../../styles/mixins/container.scss';
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/media.scss';
+
+.page {
+  // min-height: 90vh;
+  background: var(--black);
+  @include b(extramobile) {
+    background: none;
+  }
+}
+
+.container {
+  max-width: 3500px;
+  padding: 0 7px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.info {
+  margin-bottom: 7px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  // grid-template-columns: 4fr 1fr;
+  align-items: center;
+}
+
+// card and chart
+.main {
+  padding-top: 7px;
+}
+
+.main_inner {
+  min-height: 88vh;
+  margin-bottom: 7px;
+  display: grid;
+  grid-template-columns: 10fr;
+  gap: 7px;
+  position: relative;
+  transition: 0.4s ease;
+
+  &.withLeft {
+    grid-template-columns: 300px 10fr;
+  }
+  &.withRight {
+    grid-template-columns: 10fr 300px 30px;
+  }
+  &.both {
+    grid-template-columns: 300px 10fr 330px;
+  }
+  @include b(1250) {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: 'left chart' 'right right';
+    grid-auto-rows: auto;
+  }
+  @include b(850) {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: 'left' 'chart' ' right';
+  }
+}
+
+// обертка для скрывания
+.left_aside {
+  width: 300px;
+  position: absolute;
+  left: -307px;
+  transition: 0.4s ease;
+  z-index: 10;
+  max-height: 90vh;
+  height: 100%;
+  border-radius: 15px;
+  @include b(850) {
+    max-height: 100%;
+  }
+  &.active {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    .left_aside__button {
+      bottom: 121px;
+      left: -20px;
+      right: unset;
+      transform: rotate(-90deg);
+      &_inner {
+        img {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+  @include b(1250) {
+    width: 100%;
+    grid-area: left;
+    &__button {
+      display: none;
+    }
+    position: relative;
+    left: 0;
+  }
+  &__button {
+    padding: 2px;
+    cursor: pointer;
+
+    position: absolute;
+    bottom: 121px;
+    right: -44px;
+    z-index: 1;
+    transform: rotate(90deg);
+    &::before {
+      content: '';
+      position: absolute;
+      height: 36px;
+      left: -2px;
+      width: 5px;
+      left: 10px;
+    }
+    &_inner {
+      img {
+        transform: rotate(-90deg);
+      }
+      background: url('../../assets/img/sections/pair-explorer/arrow-bg.png') center center
+        no-repeat;
+      width: 73px;
+      height: 29px;
+      // transform: rotate(-180deg);
+      background-size: contain;
+      @include flex(row, center, center);
+    }
+  }
+}
+
+.right_aside {
+  position: absolute;
+  width: 330px;
+  height: 100%;
+  right: -388px;
+  transition: 0.4s ease;
+  z-index: 10;
+  max-height: 90vh;
+  margin-right: 30px;
+  @include b(850) {
+    max-height: 100%;
+  }
+  .right_aside__button {
+    right: 379px;
+  }
+  &.active {
+    position: relative;
+    right: 0;
+    .right_aside__button {
+      right: 17px;
+      &_inner {
+        transform: rotate(90deg);
+        img {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+  @include b(1250) {
+    width: 100%;
+    grid-area: right;
+    &__button {
+      display: none;
+    }
+    position: relative;
+    right: 0;
+  }
+  &__button {
+    padding: 2px;
+    cursor: pointer;
+
+    position: absolute;
+    bottom: 121px;
+    // left:0;
+    right: 348px;
+    height: 40px;
+    width: 25px;
+    &::before {
+      content: '';
+      position: absolute;
+      height: 36px;
+      right: -2px;
+      width: 5px;
+    }
+    &_inner {
+      img {
+        transform: rotate(-90deg);
+      }
+      background: url('../../assets/img/sections/pair-explorer/arrow-bg.png') center center
+        no-repeat;
+      width: 73px;
+      height: 29px;
+      background-size: contain;
+      transform: rotate(-90deg);
+      @include flex(row, center, center);
+    }
+  }
+}
+
+.left {
+  height: 100%;
+  padding: 2px;
+  position: relative;
+  border-radius: 15px 0 15px 15px;
+  @include b(1251) {
+    border-radius: 15px;
+  }
+  @include b(850) {
+    background: none;
+    padding: 0;
+  }
+}
+
+.right {
+  height: 100%;
+  padding: 2px;
+  position: relative;
+  border-radius: 0 15px 15px 15px;
+  @include b(1251) {
+    border-radius: 15px;
+  }
+  @include b(850) {
+    background: none;
+    padding: 0;
+  }
+}
+
+.left_inner {
+  background: var(--dark-soft);
+  height: 100%;
+  max-height: inherit;
+  overflow-y: auto;
+  direction: rtl;
+  border-radius: 10px;
+  margin-left: 20px;
+  @include b(1251) {
+    border-radius: 13px;
+    margin-left: 0;
+  }
+  & > * {
+    direction: ltr;
+  }
+  padding: 10px;
+  @include b(850) {
+    background: none;
+    padding: 15px 0;
+  }
+}
+
+.right_inner {
+  background: var(--dark-soft);
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 10px;
+  @include b(1251) {
+    border-radius: 13px;
+  }
+  @include b(850) {
+    background: none;
+  }
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+}
+
+.chart {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+  @include b(1250) {
+    grid-area: chart;
+  }
+  @include b(850) {
+    height: 650px;
+    margin-bottom: 25px;
+  }
+  @include b(450) {
+    height: 450px;
+  }
+}
+
+// community trust and banner
+.footer {
+  margin-top: 10px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  grid-column-gap: 20px;
+}
+
+// info above the table
+.table_info {
+  @include flex(row, center, space-between);
+  background-color: #291f62;
+  padding: 23px;
+}
+.last_trades {
+  @include flex(row, center);
+
+  &__icon {
+    margin-right: 10px;
+  }
+  &__text {
+    font-size: 18px;
+    color: var(--grey);
+  }
+}
+
+// buttons
+.buttons {
+  display: inline-flex;
+  border: 2px solid #5454d4;
+  border-radius: 2px;
+
+  &_item {
+    padding: 8px 10px;
+    font-size: 18px;
+    color: var(--grey);
+    transition: 0.4s ease;
+    cursor: pointer;
+
+    &.active {
+      background-color: #5454d4;
+    }
+  }
+}
+
+.mobile_block {
+  display: none;
+  &__favs {
+    margin: 15px 0;
+  }
+  @include b(850) {
+    display: block;
+  }
+}
+
+.info {
+  @include b(850) {
+    display: none;
+  }
+}

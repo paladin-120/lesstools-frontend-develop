@@ -1,0 +1,24 @@
+.ant-modal-content {
+  background: var(--dark-soft);
+  border-radius: 10px;
+  color: #fff;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.ant-modal-body {
+  padding: 50px 30px 30px;
+}
+
+.modal-close {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fff;
+  background: #674df6;
+  border-radius: 10px;
+  padding: 6px 20px;
+}

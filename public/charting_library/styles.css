@@ -1,0 +1,52 @@
+:root:not(.theme-dark) {
+  --tv-color-platform-background: #f1f1f1 !important;
+  --tv-color-pane-background: #f1f1f1 !important;
+  --tv-color-pane-background-secondary: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-hover: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-secondary-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-background-expanded: #f1f1f1 !important;
+  --tv-color-toolbar-button-text: rgba(0, 0, 0, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+.theme-dark:root .button-1SoiPS-f.isOpened-1SoiPS-f.hover-1SoiPS-f:before,
+.button-1SoiPS-f.isOpened-1SoiPS-f:active:before,
+.button-1SoiPS-f.isOpened-1SoiPS-f:before {
+  background: #000000 !important;
+}
+.theme-dark:root .button-2Vpz_LXc.isInteractive-2Vpz_LXc.isOpened-2Vpz_LXc:before {
+  background: #000000 !important;
+}
+
+.theme-dark:root .button-5-QHyx-s.isActive-5-QHyx-s .bg-5-QHyx-s {
+  background: #848494 !important;
+}
+
+:root:not(.theme-dark) .pane-separator {
+  background: #f1f1f1 !important;
+}
+
+.theme-dark:root {
+  --tv-color-platform-background: #000000 !important;
+  --tv-color-pane-background: #000000 !important;
+  --tv-color-pane-background-secondary: #000000 !important;
+  --tv-color-toolbar-button-background-hover: #000000 !important;
+  --tv-color-toolbar-button-background-secondary-hover: red !important;
+  --tv-color-toolbar-button-background-expanded: #ffffff !important;
+  --tv-color-toolbar-button-text: rgba(255, 255, 255, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+:root.theme-dark .pane-separator {
+  background: #000000 !important;
+}

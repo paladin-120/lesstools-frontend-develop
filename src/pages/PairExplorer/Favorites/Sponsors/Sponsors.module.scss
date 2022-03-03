@@ -1,0 +1,43 @@
+@import '../../../../styles/mixins/flex.scss';
+
+.header {
+  margin-bottom: 12px;
+  @include flex(row, center, space-between);
+}
+
+.buttons {
+  @include flex(row, center, space-between);
+}
+
+.button {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 6px;
+  background: var(--gradient);
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 6px;
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    background-color: #010103;
+  }
+  &_img {
+    position: relative;
+    z-index: 3;
+  }
+  &:first-child {
+    margin-right: 10px;
+    .button_img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}

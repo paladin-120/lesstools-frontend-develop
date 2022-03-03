@@ -1,0 +1,16 @@
+@import '../../styles/mixins/media.scss';
+
+.info {
+  max-width: 1130px;
+  padding: 0 7px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--grey);
+  text-align: justify;
+  @include b(extramobile) {
+    padding-bottom: 20px;
+  }
+
+}

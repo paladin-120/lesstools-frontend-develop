@@ -1,0 +1,36 @@
+:root {
+  // common styles
+  --white: #ffffff;
+  --black: #000000;
+  --blue: #6f45ff;
+  --grey: #474752;
+  --grey2: #848494;
+  --red: #bb3e3e;
+  --green: #2abe5c;
+  --orange: #ff7143;
+  --purple: #674DF6;
+  --black-light: #454545;
+  --grey-light-soft: #2F2F37;
+  --dark-soft: #1B1B1F;
+  --gradient: linear-gradient(90deg, #6f45ff 0%, #ff6365 100%);
+  --gradient-transparent: linear-gradient(90deg, rgba(111, 69, 255, 0.2) 0%, rgba(255, 99, 101, 0.2) 100%);
+  --gradient-replacement: #9e4fcd;
+  --gradient-background: linear-gradient(147.05deg, #1c0e40 0%, #000000 77.02%, #000000 90.56%);
+  --gradient-tools-title-background: linear-gradient(90deg, #6f45ff 0%, #ff6365 100%);
+  --gradient-card-background: linear-gradient(90deg, #040404 0%, #1c0e40 100%);
+
+  //body
+  --body-background-color: #000000;
+  --body-color: #fff;
+
+  //header
+  --header-logo-color: #dcdcdc;
+  --header-popup-option-background: rgba(103, 77, 246, 0.2);
+
+  //footer
+  --footer-background: #1a103d;
+  --footer-line-background: #ffffff;
+  --footer-social-icon-background: #674df6;
+
+  //main page
+}

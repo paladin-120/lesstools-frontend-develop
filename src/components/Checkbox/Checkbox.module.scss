@@ -1,0 +1,58 @@
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/gradient-text.scss';
+
+$border-radius: 12px;
+
+.checkbox {
+  @include flex(row, center, center);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+  line-height: 16px;
+  border-radius: $border-radius;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.default {
+    color: var(--white);
+  }
+
+  &.light {
+    color: #66668D;
+  }
+
+  &.button {
+    color: #66668D;
+    border-radius: 8px;
+  }
+
+  &.checked {
+    @include gradient-text(#fff);
+    color: #fff;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: auto;
+  }
+}
+
+.container {
+  border-radius: $border-radius;
+
+  &.default {
+    background: var(--grey-light-soft);
+  }
+
+  &.checked {
+    //background: var(--gradient);
+    background: linear-gradient(90deg, #6f45ff 0%, #ff6365 100%);
+  }
+}

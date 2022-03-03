@@ -1,0 +1,16 @@
+@import '../../styles/mixins/flex.scss';
+@import '../../styles/mixins/media.scss';
+
+.advertiesment {
+  @include flex(row, center, center);
+  @include b(extramobile) {
+    display: none;
+  }
+  margin-bottom: 45px;
+  @include b(tablet) {
+    margin-bottom: 30px;
+  }
+  img {
+    max-width: 100%;
+  }
+}

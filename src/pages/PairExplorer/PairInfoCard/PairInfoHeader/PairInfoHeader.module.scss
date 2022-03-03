@@ -1,0 +1,77 @@
+@import '../../../../styles/mixins/ellipsisRows.scss';
+@import '../../../../styles/mixins/flex.scss';
+
+.pairInfoHeader {
+  @include flex(row, center, normal, nowrap);
+}
+
+.logo {
+  margin-right: 13px;
+  img {
+    height: 35px;
+    // border-radius: 50%;
+  }
+}
+
+.right {
+  &_top {
+    @include flex(row, center);
+
+    &__pair {
+      max-width: 450px;
+      @include ellipsisRows(2);
+      span {
+        &:last-child {
+          font-weight: 700;
+        }
+      }
+      font-size: 31px;
+    }
+
+    &__socials {
+      margin-left: 13px;
+      @include flex(row, center);
+
+      &_link {
+        margin-right: 10px;
+        img {
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  &_bottom {
+    font-size: 15px;
+    @include flex(row, center);
+
+    &__name {
+      color: var(--grey);
+      margin-right: 8px;
+    }
+
+    &__pair {
+      @include flex(row, center);
+    }
+
+    &__contract {
+      color: rgba(255, 255, 255, 0.5);
+      margin-right: 20px;
+      @include flex(row, center);
+
+      &_body {
+        color: #fff;
+        margin-left: 5px;
+
+        &__copy {
+          @include flex(row, center);
+
+          & .copy {
+            cursor: pointer;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}

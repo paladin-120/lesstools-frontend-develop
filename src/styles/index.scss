@@ -1,0 +1,120 @@
+@import './reset';
+@import './fonts';
+@import './theme';
+@import './mixins/media.scss';
+
+body {
+  background-color: var(--body-background-color);
+  font-family: Celias, sans-serif !important;
+  font-weight: normal;
+  color: var(--body-color);
+  overflow-x: hidden;
+  &.fixed {
+    overflow: hidden;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @include b(tablet) {
+    padding-top: 60px;
+  }
+}
+
+main {
+  padding-left: 60px !important;
+  flex-grow: 1;
+  @include b(tablet) {
+    padding-left: 0 !important;
+  }
+}
+
+// swiper styles
+.swiper-container {
+  max-width: 100%;
+}
+
+// tool tip with copy feature styles
+.tooltip-copy {
+  font-size: 14px !important;
+  pointer-events: auto !important;
+  &:hover {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+// scroll styles
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+  width: 8px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #502cc5;
+}
+
+// grey scroll
+.grey-scroll {
+  &::-webkit-scrollbar {
+    width: 6px; /* ширина для вертикального скролла */
+    height: 0px; /* высота для горизонтального скролла */
+    background-color: rgba(255, 255, 255, 0);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #4d4c4d;
+    border-radius: 12px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #3f3c3f;
+  }
+}
+:root:not(.theme-dark) {
+  --tv-color-platform-background: #f1f1f1 !important;
+  --tv-color-pane-background: #f1f1f1 !important;
+  --tv-color-pane-background-secondary: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-hover: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-secondary-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-background-expanded: #f1f1f1 !important;
+  --tv-color-toolbar-button-text: rgba(0, 0, 0, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+:root:not(.theme-dark) .pane-separator {
+  background: #f1f1f1 !important;
+}
+
+.theme-dark:root {
+  --tv-color-platform-background: #111111 !important;
+  --tv-color-pane-background: #111111 !important;
+  --tv-color-pane-background-secondary: #111111 !important;
+  --tv-color-toolbar-button-background-hover: #000000 !important;
+  --tv-color-toolbar-button-background-secondary-hover: red !important;
+  --tv-color-toolbar-button-background-expanded: #ffffff !important;
+  --tv-color-toolbar-button-text: rgba(255, 255, 255, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+:root.theme-dark .pane-separator {
+  background: #000000 !important;
+}

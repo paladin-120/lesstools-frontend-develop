@@ -1,0 +1,105 @@
+@import '../../../../styles/mixins/media';
+@import '../../../../styles/mixins/grid';
+@import '../../../../styles/mixins/flex';
+@import '../../../../styles/mixins/ellipsisRows';
+
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 5px;
+  font-size: 10px;
+  font-weight: 500;
+
+  @include b(1242) {
+    font-size: 12px;
+  }
+
+  @include b(500) {
+    font-size: 10px;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.transaction_type {
+  align-self: flex-start;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid #2fa59a;
+  &.sell {
+    border-bottom: none;
+    border-top: 8px solid #ff6365;
+  }
+}
+
+.transaction_prices {
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  padding-right: 10px;
+
+  @include b(1242) {
+    @include flex(row, center, normal, nowrap);
+    width: 100%;
+  }
+}
+
+.transaction_price {
+  min-width: 82px;
+  margin-right: 6px;
+  text-align: right;
+  @include b(1242) {
+    padding-left: 15px;
+  }
+
+  &__value {
+    word-break: break-all;
+  }
+  &__value:first-child {
+    margin-bottom: 6px;
+  }
+}
+.transaction_symbols {
+  min-width: 42px;
+  color: #6b6777;
+  overflow: hidden;
+  &__item {
+    @include ellipsisRows(2);
+  }
+  &__item:first-child {
+    margin-bottom: 6px;
+  }
+}
+
+.transaction_usd {
+  min-width: 32px;
+  text-align: right;
+
+  @include b(1242) {
+    min-width: 72px;
+    text-align: left;
+  }
+}
+
+.transaction_etherscan {
+  cursor: pointer;
+  margin-left: 5px;
+  img {
+    height: 17px;
+    width: 17px;
+  }
+}
+
+.transaction_time {
+  min-width: 42px;
+  margin-left: 10px;
+  color: #6b6777;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: right;
+}

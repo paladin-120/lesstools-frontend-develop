@@ -1,0 +1,156 @@
+@import '../../../styles/mixins/gradient-text.scss';
+@import '../../../styles/mixins/media.scss';
+@import '../../../styles/mixins/flex';
+
+.table_header {
+  position: relative;
+  padding: 0 13px 0 10px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__title {
+    color: var(--white);
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.label {
+  @include flex(row, center, center, nowrap);
+  gap: 5px;
+  padding: 10px 5px;
+  cursor: pointer;
+
+  > img {
+    width: 8px;
+  }
+
+  &:hover {
+    background: var(--gradient);
+    color: #fff;
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 100%;
+  background: var(--black);
+
+  > div {
+    padding: 10px 5px;
+    cursor: pointer;
+    color: #fff;
+
+    &:hover {
+      background: var(--gradient);
+      color: #fff;
+    }
+  }
+}
+
+.transactions {
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.trades {
+  max-height: 24vh;
+  overflow-y: auto;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+  padding: 0 16px;
+}
+
+.option {
+  height: 38px;
+  font-size: 16px;
+  border-radius: 10px;
+  & + & {
+    margin-left: 8px;
+  }
+  &.disabled {
+    font-size: 13px;
+    background: var(--grey);
+    position: relative;
+  }
+  &_icon {
+    margin-right: 5px;
+  }
+  &_inner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  &_text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  background-color: var(--purple);
+  &.active {
+    background-color: var(--blue);
+  }
+
+  &_soon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 12px;
+    background: var(--gradient);
+    font-size: 10px;
+    border-radius: 10px 10px 0px 10px;
+    font-weight: bold;
+    font-size: 6px;
+    line-height: 8px;
+    padding: 2px 8px;
+
+    text-align: right;
+    color: var(--white);
+    text-transform: uppercase;
+    &__inner {
+      text-align: center;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.amount {
+  min-width: 144px;
+}
+
+.usd {
+  min-width: 82px;
+}
+
+.time {
+  min-width: 42px;
+  margin-left: 10px;
+}
+
+.zero_trades {
+  height: 100%;
+  padding: 15px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.favs {
+  @include b(850) {
+    display: none;
+  }
+}

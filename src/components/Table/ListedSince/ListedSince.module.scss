@@ -1,0 +1,16 @@
+@import '../../../styles/mixins/flex.scss';
+
+.block {
+  font-size: 16px;
+  color: var(--grey);
+  min-width: 170px;
+  @include flex(row, center);
+
+  &::before {
+    content: '';
+    background: url('../../../assets/img/icons/table/clock.svg') no-repeat;
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+  }
+}

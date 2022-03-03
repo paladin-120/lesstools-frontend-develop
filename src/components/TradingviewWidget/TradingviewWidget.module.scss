@@ -1,0 +1,53 @@
+.container {
+  height: 100%;
+}
+
+.loader {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:root:not(.theme-dark) {
+  --tv-color-platform-background: #f1f1f1 !important;
+  --tv-color-pane-background: #f1f1f1 !important;
+  --tv-color-pane-background-secondary: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-hover: #f1f1f1 !important;
+  --tv-color-toolbar-button-background-secondary-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-background-expanded: #f1f1f1 !important;
+  --tv-color-toolbar-button-text: rgba(0, 0, 0, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+:root:not(.theme-dark) .pane-separator {
+  background: #f1f1f1 !important;
+}
+
+.theme-dark:root {
+  --tv-color-platform-background: #111111 !important;
+  --tv-color-pane-background: #111111 !important;
+  --tv-color-pane-background-secondary: #111111 !important;
+  --tv-color-toolbar-button-background-hover: #000000 !important;
+  --tv-color-toolbar-button-background-secondary-hover: red !important;
+  --tv-color-toolbar-button-background-expanded: #ffffff !important;
+  --tv-color-toolbar-button-text: rgba(255, 255, 255, 0.3) !important;
+  --tv-color-toolbar-button-text-hover: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active: #7fd0b3 !important;
+  --tv-color-toolbar-button-text-active-hover: #7fd0b3 !important;
+  --tv-color-item-active-text: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active: #7fd0b3 !important;
+  --tv-color-toolbar-toggle-button-background-active-hover: #7fd0b3 !important;
+}
+
+:root.theme-dark .pane-separator {
+  background: #000000 !important;
+}
