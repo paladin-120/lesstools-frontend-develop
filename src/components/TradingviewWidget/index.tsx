@@ -20,6 +20,7 @@ export interface InterfaceTradingviewWidgetProps {
   fullscreen?: boolean;
   autosize?: boolean;
   studiesOverrides?: any;
+  pairInfo?: any;
 }
 
 function getLanguageFromURL() {
@@ -28,7 +29,7 @@ function getLanguageFromURL() {
   return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo((props) => {
+const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const {
@@ -43,20 +44,31 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
     fullscreen = false,
     autosize = true,
     studiesOverrides = {},
+    pairInfo = {},
   } = props;
 
   const split_symbol = symbol.split(/[:/]/);
+  const tokenAddresses = [pairInfo?.base_info?.token0?.id, pairInfo?.base_info?.token1?.id];
+  const tokenSymbols = [pairInfo?.base_info?.token0?.symbol, pairInfo?.base_info?.token1?.symbol];
 
   useEffect(() => {
     const [primaryToken, monitoringToken] = formalizePairAsInWhitelistBySymbols(
       split_symbol[0],
       split_symbol[1],
     );
+    let tokens = [];
+
+    if (primaryToken === tokenSymbols[0]) {
+      tokens = [tokenAddresses[1], tokenAddresses[0]];
+    } else {
+      tokens = [tokenAddresses[0], tokenAddresses[1]];
+    }
+
     const widgetOptions = {
       debug: false,
       symbol: `${monitoringToken}/${primaryToken}`,
       interval,
-      datafeed: Datafeed,
+      datafeed: Datafeed(tokens),
       // interval,
       // toolbar_bg: "#1a103d",
       container_id: containerId,
@@ -127,20 +139,8 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
 
     // });
     return () => (window as any).tvWidget.remove();
-  }, [
-    symbol,
-    interval,
-    containerId,
-    libraryPath,
-    chartsStorageUrl,
-    chartsStorageApiVersion,
-    clientId,
-    userId,
-    fullscreen,
-    autosize,
-    studiesOverrides,
-    split_symbol,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -152,6 +152,6 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
       <div id={containerId} className={s.container} />
     </>
   );
-});
+};
 
 export default TradingviewWidget;

@@ -76,6 +76,8 @@ type ICandlesDataFromOurBackend = {
   tsym: string;
   fromTs: string;
   toTs: string;
+  faddress: string;
+  taddress: string;
 };
 
 class BackendService {
@@ -215,7 +217,7 @@ class BackendService {
   getCandlesFromOurBackned = async (data: ICandlesDataFromOurBackend) => {
     try {
       const res = await this.axios.get(
-        `/analytics/candles/${data.pair_id}&${data.pool}&${data.time_interval}&${data.candles}&${data.fromTs}&${data.toTs}&${data.fsym}&${data.tsym}`,
+        `/analytics/candles/${data.pair_id}&${data.pool}&${data.time_interval}&${data.candles}&${data.fromTs}&${data.toTs}&${data.fsym}&${data.tsym}&${data.faddress}&${data.taddress}`,
       );
       return res;
     } catch (error) {

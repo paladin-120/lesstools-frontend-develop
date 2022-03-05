@@ -89,7 +89,7 @@ export default {
     _from: any,
     _to: any,
     first: any,
-    limit: any,
+    pairInfo: any,
   ) => {
     if (!first) return [];
     try {
@@ -98,7 +98,7 @@ export default {
       const pair_id = locationPathname[locationPathname.length - 1];
       const pool = TradingviewExchangesNames[rootStore.currentExchange.exchange] || 'mainnet';
 
-      console.log('Get Bars', split_symbol, pair_id, pool, resolution, _from, _to);
+      console.log('Get Bars', split_symbol, pair_id, pool, resolution, _from, _to, pairInfo);
       // query data from our api
       const url = resolutions[resolution];
       let data = [];
@@ -119,6 +119,8 @@ export default {
         tsym: split_symbol[1],
         fromTs: _from,
         toTs: _to,
+        faddress: pairInfo[0],
+        taddress: pairInfo[1],
       });
       // data = await fetchFromCryptoCompare(url, params, _from, _to);
 
@@ -131,7 +133,7 @@ export default {
             params: {
               fsym: newRequestData.symbols[0],
               tsym: newRequestData.symbols[1],
-              limit: limit || 2000,
+              limit: 2000,
               api_key,
               e: newRequestData.exchange,
             },
@@ -163,11 +165,12 @@ export default {
           tsym: split_symbol[1],
           fromTs: _from,
           toTs: _to,
+          faddress: pairInfo[0],
+          taddress: pairInfo[1],
         });
       }
 
       if (data.length) {
-        console.log('Get History Data', data);
         const bars = data.reduce((res: Array<any>, el: any) => {
           if (el.open !== 0) {
             res.push({

@@ -323,6 +323,7 @@ Fundraising Capital"
                       pairInfo.base_info.token1,
                     )[0].symbol
                   }`}
+                  pairInfo={pairInfo}
                 />
               )}
             </div>

@@ -9,8 +9,8 @@ export default {
     backend: IS_PRODUCTION
       ? ''
       : IS_PREPRODUCTION
-      ? 'https://tools.less.xyz/api/v1/'
-      : // 'http://localhost:8000/api/v1/'
+      ? 'http://localhost:8000/api/v1/'
+      : // ? 'https://tools.less.xyz/api/v1/'
         'https://lesstools.rocknblock.io/api/v1/',
     COINGECKO: 'https://api.coingecko.com/api/v3',
     // backend: 'https://tools.less.xyz/api/v1/',

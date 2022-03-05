@@ -31,6 +31,8 @@ interface IGetCandlesFromOurBackendProps {
   tsym: string;
   fromTs: string;
   toTs: string;
+  faddress: string;
+  taddress: string;
 }
 
 interface ICandleFromBackend {
@@ -61,6 +63,8 @@ export const getCandlesFromOurBackend = async (data: IGetCandlesFromOurBackendPr
     tsym: data.tsym,
     fromTs: data.fromTs,
     toTs: data.toTs,
+    faddress: data.faddress,
+    taddress: data.taddress,
   });
   console.log('CandlesFromBackend', candlesFromBackend, data);
   const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
@@ -109,6 +113,8 @@ export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOur
     tsym: data.tsym,
     fromTs: data.fromTs,
     toTs: data.toTs,
+    faddress: data.faddress,
+    taddress: data.taddress,
   });
 
   const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
