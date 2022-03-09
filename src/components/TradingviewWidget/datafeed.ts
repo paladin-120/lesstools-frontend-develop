@@ -1,7 +1,4 @@
 import historyProvider from './historyProvider';
-import { getCandlesFromOurBackendNoReverse } from './getCandlesFromOurBackend';
-import { TradingviewExchangesNames } from '../../config/exchanges';
-import rootStore from '../../store/store';
 import moment from 'moment';
 
 declare global {
@@ -11,21 +8,7 @@ declare global {
 }
 
 const config = {
-  supported_resolutions: [
-    '1',
-    '5',
-    '10',
-    '15',
-    '30',
-    '60',
-    '120',
-    '240',
-    '720',
-    '1D',
-    '3D',
-    '1W',
-    '1M',
-  ],
+  supported_resolutions: ['1', '5', '30', '60', '120', '1D', '1W'],
 };
 
 export default (tokensArray: any) => {
@@ -80,10 +63,12 @@ export default (tokensArray: any) => {
       onHistoryCallback: any = () => {},
       onErrorCallback: any = () => {},
     ) {
-      const { from, to, firstDataRequest } = periodParams;
+      const { from, to, countBack, firstDataRequest } = periodParams;
+      console.log('Get Bars', resolution, from, to, countBack, firstDataRequest);
       historyProvider
         .getBars(symbolInfo, resolution, from, to, firstDataRequest, tokensArray)
         .then((bars) => {
+          console.log('History Provider Get Bars', bars, from, to);
           if (bars.length) {
             onHistoryCallback(bars, { noData: false });
           } else {
@@ -99,38 +84,32 @@ export default (tokensArray: any) => {
     subscribeBars(symbolInfo: any, resolution: any, onRealtimeCallback: any) {
       console.log('SUBSCRIBE BARS: ', { symbolInfo, resolution });
 
-      const locationPathname = window.location.pathname.split('/');
-      const pair_id = locationPathname[locationPathname.length - 1];
-      const pool = TradingviewExchangesNames[rootStore.currentExchange.exchange] || 'mainnet';
-      const split_symbol: Array<string> = symbolInfo.name.split(/[:/]/);
-
-      if (window.interval) {
-        clearInterval(window.interval);
-      }
-
       window.interval = setInterval(async function () {
         const now = moment().unix();
-        const data = await getCandlesFromOurBackendNoReverse({
-          pair_id,
-          pool,
-          candles: 2,
-          time_interval: resolution,
-          fsym: split_symbol[0],
-          tsym: split_symbol[1],
-          fromTs: `${now - 120}`,
-          toTs: `${now}`,
-          faddress: tokensArray[0],
-          taddress: tokensArray[1],
-        });
-        console.log('Subscribe Bars', data);
-        if (data) {
+        const data = await historyProvider.getBars(
+          symbolInfo,
+          resolution,
+          now - 18000,
+          now,
+          false,
+          tokensArray,
+        );
+
+        if (data && data[data.length - 1]) {
+          console.log('Subscribe', data[data.length - 1]);
           onRealtimeCallback(data[data.length - 1]);
         }
       }, 1000 * 60); // 60s update interval
     },
+
     unsubscribeBars() {
       console.log('UNSUBSCRIBE BARS');
+
+      if (window.interval) {
+        clearInterval(window.interval);
+      }
     },
+
     calculateHistoryDepth: (resolution: any) => {
       // while optional, this makes sure we request 24 hours of minute data at a time
       // CryptoCompare's minute data endpoint will throw an error if we request data beyond 7 days in the past, and return no data

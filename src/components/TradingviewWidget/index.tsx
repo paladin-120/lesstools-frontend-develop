@@ -76,9 +76,9 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
       time_frames: [
         { text: '5y', resolution: '1W' },
         { text: '1y', resolution: '1D' },
-        { text: '6m', resolution: '1D' },
-        { text: '3m', resolution: '120' },
-        { text: '1m', resolution: '60' },
+        { text: '6m', resolution: '120' },
+        { text: '3m', resolution: '60' },
+        { text: '1m', resolution: '30' },
         { text: '5d', resolution: '5' },
         { text: '1d', resolution: '1' },
       ],
@@ -112,6 +112,7 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
 
     widget.onChartReady(() => {
       setIsLoaded(true);
+      widget.chart().setResolution('15');
     });
 
     widget.headerReady().then(function () {
@@ -126,11 +127,11 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
       button.textContent = `${shittoken}/USD`;
       button.addEventListener('click', function () {
         if (!isUsd) {
-          widget.setSymbol(`${shittoken}/USD`, '60');
+          widget.setSymbol(`${shittoken}/USD`, '15');
           button.textContent = symbol;
           isUsd = true;
         } else {
-          widget.setSymbol(`${shittoken}/${mainToken}`, '60');
+          widget.setSymbol(`${shittoken}/${mainToken}`, '15');
           button.textContent = `${shittoken}/USD`;
           isUsd = false;
         }
@@ -140,7 +141,7 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
     // });
     return () => (window as any).tvWidget.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [symbol]);
 
   return (
     <>

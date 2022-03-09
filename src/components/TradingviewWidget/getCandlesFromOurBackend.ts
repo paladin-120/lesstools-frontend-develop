@@ -83,66 +83,9 @@ export const getCandlesFromOurBackend = async (data: IGetCandlesFromOurBackendPr
     });
   }
 
-  // for (let i = 0; i < Math.floor(formattedCandles.length / 2); i += 1) {
-  //   const firstTime = formattedCandles[i].time;
-  //   formattedCandles[i].time = formattedCandles[formattedCandles.length - i - 1].time;
-  //   formattedCandles[formattedCandles.length - i - 1].time = firstTime;
-  // }
-
-  console.log(
-    'getCandlesFromOurBackend',
-    formattedCandles.sort((candle1, candle2) => {
-      return candle1.time - candle2.time;
-    }),
-  );
-
   return formattedCandles
     .filter((candle) => candle.open)
     .sort((candle1, candle2) => {
       return candle1.time - candle2.time;
     });
-};
-
-export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOurBackendProps) => {
-  const candlesFromBackend = await backend.getCandlesFromOurBackned({
-    pair_id: data.pair_id,
-    pool: data.pool,
-    time_interval: resolutionsForOurBackend[data.time_interval],
-    candles: data.candles || resolutionToCandlesAmount[data.time_interval],
-    fsym: data.fsym,
-    tsym: data.tsym,
-    fromTs: data.fromTs,
-    toTs: data.toTs,
-    faddress: data.faddress,
-    taddress: data.taddress,
-  });
-
-  const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
-  const formattedCandles: Array<IFormattedCandle> = [];
-
-  for (let i = 0; i < candles.length; i += 1) {
-    const currentCandle = candles[i];
-
-    if (currentCandle.open) {
-      formattedCandles.push({
-        time: currentCandle.time * 1000, // TradingView requires bar time in ms
-        low: currentCandle.low,
-        high: currentCandle.high,
-        open: currentCandle.open,
-        close: currentCandle.close,
-        volumefrom: currentCandle.volumefrom,
-      });
-    }
-  }
-
-  console.log(
-    'getCandlesFromOurBackendNoReverse',
-    formattedCandles.sort((candle1, candle2) => {
-      return candle2.time - candle1.time;
-    }),
-  );
-
-  return formattedCandles.sort((candle1, candle2) => {
-    return candle2.time - candle1.time;
-  });
 };
