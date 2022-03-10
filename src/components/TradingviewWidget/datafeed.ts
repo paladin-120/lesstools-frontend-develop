@@ -24,6 +24,7 @@ export default (tokensArray: any) => {
       onResolveErrorCallback: any,
     ) => {
       try {
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         // expects a symbolInfo object in response
         const split_data = symbolName.split(/[:/]/);
         const symbolInfo = {
@@ -33,7 +34,7 @@ export default (tokensArray: any) => {
           description: '',
           type: 'crypto',
           session: '24x7',
-          timezone: '(UTC+3)',
+          timezone,
           ticker: symbolName,
           exchange: split_data[0],
           minmov: 1,
