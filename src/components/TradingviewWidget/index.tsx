@@ -64,9 +64,11 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
       tokens = [tokenAddresses[0], tokenAddresses[1]];
     }
 
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     const widgetOptions = {
       debug: false,
-      symbol: `${monitoringToken}/${primaryToken}`,
+      symbol: `${monitoringToken}/USD`,
       interval,
       datafeed: Datafeed(tokens),
       // interval,
@@ -91,6 +93,7 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
       user_id: userId,
       fullscreen,
       autosize,
+      timezone,
       studies_overrides: studiesOverrides,
       custom_css_url: './styles.css',
       overrides: {
@@ -116,7 +119,7 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = (props) => 
     });
 
     widget.headerReady().then(function () {
-      let isUsd = false;
+      let isUsd = true;
       const [mainToken, shittoken] = formalizePairAsInWhitelistBySymbols(
         split_symbol[0],
         split_symbol[1],

@@ -3,9 +3,9 @@ import backend from '../../services/backend';
 export const resolutionsForOurBackend = {
   '1': 'minute',
   '5': '5minute',
-  '30': 'hour',
-  '60': '2hour',
-  '120': '4day',
+  '30': '30minute',
+  '60': 'hour',
+  '120': '2hour',
   '1D': 'day',
   '1W': 'week',
 };
