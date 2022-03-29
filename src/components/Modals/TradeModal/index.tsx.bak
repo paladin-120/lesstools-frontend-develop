@@ -25,7 +25,7 @@ const TradeModal: React.FC<ITradeModalProps> = observer(({ tokenId = '' }) => {
           src={
             currentExchange.exchange === 'uniswap'
               ? `https://app.uniswap.org/#/swap?outputCurrency=${tokenId}`
-              : 'https://app.sushi.com/en/swap'
+              : 'https://app.sushi.com/en/swap?outputCurrency=${tokenId}'
           }
           height="660px"
           width="100%"

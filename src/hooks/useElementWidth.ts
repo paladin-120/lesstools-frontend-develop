@@ -7,7 +7,7 @@ export const useElementWidth = (el: React.RefObject<any>) => {
     function listener() {
       setElWidth(el.current.offsetWidth);
     }
-    
+
     window.addEventListener('resize', listener);
 
     return () => window.removeEventListener('resize', listener);

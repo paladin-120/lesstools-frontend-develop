@@ -23,7 +23,6 @@ export const WHITELIST = [
   '0xe91d153e0b41518a2ce8dd3d7944fa863463a97d', // WXDAI
   '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // WBNB
   '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', // WFTM
-  '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664', // USDC.e AVAX
 ];
 
 export const WHITELIST_SYMBOLS = [
@@ -51,5 +50,4 @@ export const WHITELIST_SYMBOLS = [
   'WXDAI',
   'WBNB',
   'WFTM',
-  'USDC.e',
 ];

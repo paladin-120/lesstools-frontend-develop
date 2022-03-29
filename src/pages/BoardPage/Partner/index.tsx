@@ -35,7 +35,9 @@ const Partner: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className={s.partner_description}>Multi-Chain Decentralised Swap Exchange Protocol</div>
+        <div className={s.partner_description}>
+          Multi-Chain Decentralised Swap Exchange Protocol
+        </div>
       </div>
     </section>
   );

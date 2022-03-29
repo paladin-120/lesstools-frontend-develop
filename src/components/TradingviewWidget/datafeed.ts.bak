@@ -91,7 +91,7 @@ export default {
       const data = await getCandlesFromOurBackendNoReverse({
         pair_id,
         pool,
-        candles: 2,
+        candles: 1,
         time_interval: resolution,
       });
       console.log(data);

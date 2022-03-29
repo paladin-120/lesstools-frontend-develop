@@ -16,7 +16,7 @@ abstract class HotPairs {
 
   setHotPairs(value: any) {
     const key = 'hotPairs';
-    const newValue =  { [key]: { ...this.store[key], ...value } };
+    const newValue = { [key]: { ...this.store[key], ...value } };
     this.store = Object.assign(this.store, newValue);
   }
 }

@@ -11,16 +11,16 @@ const api_key = REACT_APP_CRYPTOCOMPARE_API_KEY;
 
 
 const resolutions = {
-  '1': '/data/histominute',
-  '3': '/data/histominute',
-  '5': '/data/histominute',
-  '15': '/data/histominute',
-  '30': '/data/histohour',
-  '60': '/data/histohour',
-  '120': '/data/histoday',
-  '240': '/data/histominute',
-  '1D': '/data/histoday',
-  '1W': '/data/histoday',
+  '1': 30000,
+  '3': 20000,
+  '5': 15000,
+  '15': 10000,
+  '30': 750,
+  '60': 1440,
+  '120': 10800,
+  '240': 1800,
+  '1D': 1800,
+  '1W': 1800,
 };
 
 
@@ -78,7 +78,7 @@ export default {
       const pool = TradingviewExchangesNames[rootStore.currentExchange.exchange] || 'mainnet';
 
       // query data from our api
-      if (split_symbol[0] !== 'USD') {
+      if (split_symbol[1] !== 'USD') {
         return await getCandlesFromOurBackend({ pair_id, pool, time_interval: resolution });
       }
 

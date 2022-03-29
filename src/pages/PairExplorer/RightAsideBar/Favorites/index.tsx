@@ -15,8 +15,8 @@ import s from './Favorites.module.scss';
 
 import cross from '../../../../assets/img/icons/close.svg';
 import arrowRight from '../../../../assets/img/icons/arrow-right.svg';
-import { Exchange } from "../../../../config/exchanges";
-import { uppercaseFirstLetter } from "../../../../utils/prettifiers";
+import { Exchange } from '../../../../config/exchanges';
+import { uppercaseFirstLetter } from '../../../../utils/prettifiers';
 
 interface IFavorite {
   symbol: string;
@@ -27,13 +27,7 @@ interface IFavorite {
   closeModal: () => void;
 }
 
-const Favorite: React.FC<IFavorite> = ({
-  symbol,
-  price,
-  deletePair,
-  pairId,
-  closeModal,
-}) => {
+const Favorite: React.FC<IFavorite> = ({ symbol, price, deletePair, pairId, closeModal }) => {
   const location = useLocation();
   const network = location.pathname.split('/')[1].toLowerCase();
 

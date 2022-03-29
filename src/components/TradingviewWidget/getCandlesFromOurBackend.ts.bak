@@ -102,7 +102,7 @@ export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOur
 
     if (currentCandle.open) {
       formattedCandles.push({
-        time: currentCandle.start_time * 1000, // TradingView requires bar time in ms
+        time: currentCandle.start_time * 100, // TradingView requires bar time in ms
         low: currentCandle.low,
         high: currentCandle.high,
         open: currentCandle.open,

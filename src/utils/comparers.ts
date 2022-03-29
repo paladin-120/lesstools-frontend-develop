@@ -10,7 +10,7 @@ export const uniqueArrayOfObjectsByKey = (array: any[], key: string) => {
       return false;
     }
   });
-}
+};
 
 export const uniqueArrayOfObjectsByKeyOfChild = (array: any[], key: string, key2: string) => {
   return array.filter((item: any, index: number, self: any[]) => {
@@ -21,4 +21,4 @@ export const uniqueArrayOfObjectsByKeyOfChild = (array: any[], key: string, key2
       return false;
     }
   });
-}
+};

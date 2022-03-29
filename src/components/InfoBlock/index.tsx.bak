@@ -225,7 +225,7 @@ const InfoBlock: React.FC<any> = observer(() => {
               ))}
               {hotPairs &&
                 hotPairs[network]
-                  ?.slice(0, 15 - adminTokens.length)
+                  ?.slice(0, 10 - adminTokens.length)
                   .map((pair: any, index: number) => (
                     <div key={`${pair.pair.id}`} className={s.table_cell}>
                       <Link to={`/${network.toLowerCase()}/pair-explorer/${pair.pair.id}`}>

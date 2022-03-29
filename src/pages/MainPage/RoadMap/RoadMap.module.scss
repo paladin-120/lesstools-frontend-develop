@@ -23,7 +23,7 @@
   font-size: 40px;
   color: var(--grey);
   margin-bottom: 70px;
-  @include b(mobile){
+  @include b(mobile) {
     margin-bottom: 20px;
   }
 }

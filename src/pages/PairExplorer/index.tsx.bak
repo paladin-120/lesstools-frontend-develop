@@ -176,7 +176,7 @@ const PairExplorer: React.FC = observer(() => {
   useEffect(() => {
     const timerId = setInterval(() => {
       getPairInfoFromAllExchanges();
-    }, 60 * 100);
+    }, 60 * 1000);
 
     return () => clearInterval(timerId);
   }, [getPairInfoFromAllExchanges]);
@@ -185,7 +185,7 @@ const PairExplorer: React.FC = observer(() => {
   useEffect(() => {
     const timerId = setInterval(() => {
       getSwapsFromAllExchanges();
-    }, 60 * 100);
+    }, 60 * 1000);
 
     return () => clearInterval(timerId);
   }, [getSwapsFromAllExchanges]);

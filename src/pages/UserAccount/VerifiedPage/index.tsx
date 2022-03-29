@@ -24,12 +24,12 @@ const VerifiedPage: React.FC = observer(() => {
   // });
 
   // const getPlanPrices = async () => {
-    // const res = await backend.getPlanPrices();
-    // setPrices({ holding: res.data.holding_amount_in_less, payment: res.data.monthly_price_in_usd });
+  // const res = await backend.getPlanPrices();
+  // setPrices({ holding: res.data.holding_amount_in_less, payment: res.data.monthly_price_in_usd });
   // };
 
   // useEffect(() => {
-    // getPlanPrices();
+  // getPlanPrices();
   // }, []);
 
   // pooling subscription data

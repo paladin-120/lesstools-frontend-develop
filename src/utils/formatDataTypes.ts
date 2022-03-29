@@ -6,4 +6,4 @@ export const newObject = (object: any) => {
     console.error('newObject:', e);
     return {};
   }
-}
+};

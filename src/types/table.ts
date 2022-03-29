@@ -1,4 +1,4 @@
-import { Exchanges } from "../config/exchanges";
+import { Exchanges } from '../config/exchanges';
 
 export interface IRowBigSwap {
   pair: string;

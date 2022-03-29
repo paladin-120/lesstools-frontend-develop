@@ -8,12 +8,16 @@
   --red: #bb3e3e;
   --green: #2abe5c;
   --orange: #ff7143;
-  --purple: #674DF6;
+  --purple: #674df6;
   --black-light: #454545;
-  --grey-light-soft: #2F2F37;
-  --dark-soft: #1B1B1F;
+  --grey-light-soft: #2f2f37;
+  --dark-soft: #1b1b1f;
   --gradient: linear-gradient(90deg, #6f45ff 0%, #ff6365 100%);
-  --gradient-transparent: linear-gradient(90deg, rgba(111, 69, 255, 0.2) 0%, rgba(255, 99, 101, 0.2) 100%);
+  --gradient-transparent: linear-gradient(
+    90deg,
+    rgba(111, 69, 255, 0.2) 0%,
+    rgba(255, 99, 101, 0.2) 100%
+  );
   --gradient-replacement: #9e4fcd;
   --gradient-background: linear-gradient(147.05deg, #1c0e40 0%, #000000 77.02%, #000000 90.56%);
   --gradient-tools-title-background: linear-gradient(90deg, #6f45ff 0%, #ff6365 100%);

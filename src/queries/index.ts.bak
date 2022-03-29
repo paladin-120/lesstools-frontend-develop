@@ -433,36 +433,28 @@ export const GET_HOT_PAIRS = `
   ${PAIR_FRAGMENT}
   query getHotPairs($timestamp1: Int, $timestamp2: Int, $timestamp3: Int) {
     currentHour: pairHourDatas(
-      orderBy: hourlyTxns
+      orderBy: txCount
       orderDirection: desc
-      where: { hourStartUnix: $timestamp1 }
+      where: { date: $timestamp1 }
     ) {
       pair {
         ...PairToken
       }
-      hourlyTxns
+      hourlyTxns: txCount
     }
 
-    oneHour: pairHourDatas(
-      orderBy: hourlyTxns
-      orderDirection: desc
-      where: { hourStartUnix: $timestamp2 }
-    ) {
+    oneHour: pairHourDatas(orderBy: txCount, orderDirection: desc, where: { date: $timestamp2 }) {
       pair {
         ...PairToken
       }
-      hourlyTxns
+      hourlyTxns: txCount
     }
 
-    twoHours: pairHourDatas(
-      orderBy: hourlyTxns
-      orderDirection: desc
-      where: { hourStartUnix: $timestamp3 }
-    ) {
+    twoHours: pairHourDatas(orderBy: txCount, orderDirection: desc, where: { date: $timestamp3 }) {
       pair {
         ...PairToken
       }
-      hourlyTxns
+      hourlyTxns: txCount
     }
   }
 `;

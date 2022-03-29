@@ -17,7 +17,7 @@ export enum Subgraphs {
   Spiritswap = 'https://api.thegraph.com/subgraphs/name/rock-n-block/spiritswap-lesstools',
   Joetrader = 'https://api.thegraph.com/subgraphs/name/rock-n-block/joe-trader-lesstools',
   Pangolin = 'https://api.thegraph.com/subgraphs/name/rock-n-block/pangolin-lesstools',
-  Quickswap = 'https://api.thegraph.com/subgraphs/name/rock-n-block/lesstools-quickless',
+  Quickswap = 'https://api.thegraph.com/subgraphs/name/sameepsi/quickswap03',
 }
 
 export enum SubgraphsShort {
@@ -37,7 +37,7 @@ export enum SubgraphsShort {
   Spiritswap = '/name/rock-n-block/spiritswap-lesstools',
   Joetrader = '/name/rock-n-block/joe-trader-lesstools',
   Pangolin = '/name/rock-n-block/pangolin-lesstools',
-  Quickswap = '/name/rock-n-block/lesstools-quickless',
+  Quickswap = '/name/sameepsi/quickswap03',
 }
 
 export interface ISubgraphsByNetworks {

@@ -8,12 +8,12 @@ import { Networks, NetworksForHotTable } from '../../../config/networks';
 import s from './HotTable.module.scss';
 import compass from '../../../assets/img/sections/board-page/compass.svg';
 import Checkbox from '../../../components/Checkbox';
-import { newObject } from "../../../utils/formatDataTypes";
-import { ExchangesByNetworks, isExchangeLikeSushiswap } from "../../../config/exchanges";
-import TheGraph from "../../../services/TheGraph";
-import { SubgraphsByExchangeShort } from "../../../config/subgraphs";
-import { GET_HOT_PAIRS, GET_HOT_PAIRS_SUSHISWAP } from "../../../queries";
-import { getStartOfHour } from "../../../utils/time";
+import { newObject } from '../../../utils/formatDataTypes';
+import { ExchangesByNetworks, isExchangeLikeSushiswap } from '../../../config/exchanges';
+import TheGraph from '../../../services/TheGraph';
+import { SubgraphsByExchangeShort } from '../../../config/subgraphs';
+import { GET_HOT_PAIRS, GET_HOT_PAIRS_SUSHISWAP } from '../../../queries';
+import { getStartOfHour } from '../../../utils/time';
 
 interface ITableCellProps {
   tokenSymbol: string;
@@ -98,54 +98,53 @@ const HotTable: React.FC<IHotTableProps> = observer((props) => {
     }
   }
 
-  const getDataForAllExchangesOfNetwork = useCallback(
-    async (net: string) => {
-      try {
-        const exchanges = ExchangesByNetworks[net] || [];
-        const exchangesOfNetwork = Object.values(exchanges);
-        if (!exchangesOfNetwork.length) return {};
-        const results = exchangesOfNetwork.map((exchangeOfNetwork: any) => {
-          return TheGraph.query({
-            subgraph: SubgraphsByExchangeShort[exchangeOfNetwork],
-            query: isExchangeLikeSushiswap(exchangeOfNetwork)
-              ? GET_HOT_PAIRS_SUSHISWAP
-              : GET_HOT_PAIRS,
-            variables: isExchangeLikeSushiswap(exchangeOfNetwork)
-              ? {
+  const getDataForAllExchangesOfNetwork = useCallback(async (net: string) => {
+    try {
+      const exchanges = ExchangesByNetworks[net] || [];
+      const exchangesOfNetwork = Object.values(exchanges);
+      if (!exchangesOfNetwork.length) return {};
+      const results = exchangesOfNetwork.map((exchangeOfNetwork: any) => {
+        return TheGraph.query({
+          subgraph: SubgraphsByExchangeShort[exchangeOfNetwork],
+          query: isExchangeLikeSushiswap(exchangeOfNetwork)
+            ? GET_HOT_PAIRS_SUSHISWAP
+            : GET_HOT_PAIRS,
+          variables: isExchangeLikeSushiswap(exchangeOfNetwork)
+            ? {
                 timestamp1: getStartOfHour(),
                 timestamp2: getStartOfHour() - 3600,
                 timestamp3: getStartOfHour() - 7200,
               }
-              : {
+            : {
                 timestamp1: 1598338800,
                 timestamp2: 1598338800 - 3600,
                 timestamp3: 1598338800 - 7200,
               },
-          });
         });
-        const result = await Promise.all(results);
-        const resultsFormatted: any[] = result.map((pair: any, i: number) => {
-          return formatData(pair, exchangesOfNetwork[i]);
-        });
-        const resultsConсatenated = [].concat(...resultsFormatted);
-        const resultsSorted = resultsConсatenated.sort((a: any, b: any) => +b.hourlyTxns - +a.hourlyTxns);
-        console.log('HotTable getDataForAllExchangesOfNetwork:', {
-          net,
-          exchangesOfNetwork,
-          result,
-          resultsFormatted,
-          resultsConсatenated,
-          resultsSorted,
-        });
-        // setHotPairs({ [network]: resultsContatenated });
-        return { [net]: resultsSorted };
-      } catch (e) {
-        console.error('HotTable getDataForAllExchangesOfNetwork:', e);
-        return {};
-      }
-    },
-    [],
-  );
+      });
+      const result = await Promise.all(results);
+      const resultsFormatted: any[] = result.map((pair: any, i: number) => {
+        return formatData(pair, exchangesOfNetwork[i]);
+      });
+      const resultsConсatenated = [].concat(...resultsFormatted);
+      const resultsSorted = resultsConсatenated.sort(
+        (a: any, b: any) => +b.hourlyTxns - +a.hourlyTxns,
+      );
+      console.log('HotTable getDataForAllExchangesOfNetwork:', {
+        net,
+        exchangesOfNetwork,
+        result,
+        resultsFormatted,
+        resultsConсatenated,
+        resultsSorted,
+      });
+      // setHotPairs({ [network]: resultsContatenated });
+      return { [net]: resultsSorted };
+    } catch (e) {
+      console.error('HotTable getDataForAllExchangesOfNetwork:', e);
+      return {};
+    }
+  }, []);
 
   const getAllData = useCallback(async () => {
     try {
@@ -166,7 +165,7 @@ const HotTable: React.FC<IHotTableProps> = observer((props) => {
     } catch (e) {
       console.error(e);
     }
-  }, [setHotPairs, getDataForAllExchangesOfNetwork])
+  }, [setHotPairs, getDataForAllExchangesOfNetwork]);
 
   useEffect(() => {
     getAllData();
@@ -207,10 +206,7 @@ const HotTable: React.FC<IHotTableProps> = observer((props) => {
         {Object.entries(NetworksForHotTable).map((item: [string, string]) => {
           const [net, networkName] = item;
           return (
-            <Checkbox
-              onClick={() => setNetwork(net)}
-              checked={network === net}
-            >
+            <Checkbox onClick={() => setNetwork(net)} checked={network === net}>
               {networkName}
             </Checkbox>
           );

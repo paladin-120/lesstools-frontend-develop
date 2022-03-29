@@ -55,9 +55,7 @@ const Search: React.FC<IInputProps> = ({
         type="text"
         placeholder={placeholder}
       />
-      <div className={s.children}>
-        {children}
-      </div>
+      <div className={s.children}>{children}</div>
     </div>
   );
 };
