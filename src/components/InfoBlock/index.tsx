@@ -214,7 +214,7 @@ const InfoBlock: React.FC<any> = observer(() => {
         <div className={s.right}>
           <div className={s.marquee}>
             <div className={s.table}>
-              {adminTokens.map((info, index) => (
+              {adminTokens?.map((info, index) => (
                 <HotTokenAdmin
                   index={index + 1}
                   key={info.address}
@@ -225,11 +225,11 @@ const InfoBlock: React.FC<any> = observer(() => {
               ))}
               {hotPairs &&
                 hotPairs[network]
-                  ?.slice(0, 15 - adminTokens.length)
+                  ?.slice(0, 15 - adminTokens?.length)
                   .map((pair: any, index: number) => (
                     <div key={`${pair.pair.id}`} className={s.table_cell}>
                       <Link to={`/${network.toLowerCase()}/pair-explorer/${pair.pair.id}`}>
-                        <span>#{index + adminTokens.length + 1}</span>{' '}
+                        <span>#{index + adminTokens?.length + 1}</span>{' '}
                         <div>
                           {WHITELIST.includes(pair.pair.token0.id)
                             ? pair.pair.token1.symbol
