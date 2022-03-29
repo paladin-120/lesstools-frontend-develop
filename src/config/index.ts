@@ -1,5 +1,5 @@
 const IS_PRODUCTION = false;
-const IS_PREPRODUCTION = true;
+const IS_PREPRODUCTION = false;
 export const REACT_APP_CRYPTOCOMPARE_API_KEY =
   '8eae098cd1fb6a0a2dc9ad364565acc313d7aa1cbd6132f56a2e46890a03258e';
 
@@ -10,7 +10,7 @@ export default {
       ? ''
       : IS_PREPRODUCTION
       ? 'http://127.0.0.1:8000/api/v1/'
-      : 'https://lesstools.rocknblock.io/api/v1/',
+      : 'https://tools.less.xyz/api/v1/',
     COINGECKO: 'https://api.coingecko.com/api/v3',
     // backend: 'https://tools.less.xyz/api/v1/',
     THE_GRAPH: 'https://api.thegraph.com/subgraphs',
