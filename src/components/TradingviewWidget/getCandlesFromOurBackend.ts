@@ -61,7 +61,7 @@ export const getCandlesFromOurBackend = async (data: IGetCandlesFromOurBackendPr
     candles: data.candles || resolutionToCandlesAmount[data.time_interval],
   });
 
-  const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend.data);
+  const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
   const formattedCandles: Array<IFormattedCandle> = [];
 
   for (let i = 0; i < candles.length; i += 1) {
@@ -94,7 +94,7 @@ export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOur
     candles: data.candles || resolutionToCandlesAmount[data.time_interval],
   });
 
-  const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend.data);
+  const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
   const formattedCandles: Array<IFormattedCandle> = [];
 
   for (let i = 0; i < candles.length; i += 1) {

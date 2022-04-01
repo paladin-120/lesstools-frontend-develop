@@ -9,7 +9,6 @@ const api_root = 'https://min-api.cryptocompare.com';
 const history: any = {};
 const api_key = REACT_APP_CRYPTOCOMPARE_API_KEY;
 
-
 const resolutions = {
   '1': '/data/histominute',
   '3': '/data/histominute',
@@ -22,7 +21,6 @@ const resolutions = {
   '1D': '/data/histoday',
   '1W': '/data/histoday',
 };
-
 
 interface IExchange {
   [key: string]: {
@@ -58,7 +56,6 @@ const findExchangeForPair = (exchanges: IExchanges, firstSymbolInPair: string) =
   return null;
 };
 
-
 export default {
   history,
 
@@ -70,7 +67,6 @@ export default {
     first: any,
     limit: any,
   ) => {
-    if (!first) return [];
     try {
       const split_symbol: Array<string> = symbolInfo.name.split(/[:/]/);
       const locationPathname = window.location.pathname.split('/');

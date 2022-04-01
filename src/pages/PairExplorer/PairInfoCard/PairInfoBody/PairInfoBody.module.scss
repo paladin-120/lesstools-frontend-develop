@@ -208,6 +208,11 @@
           color: #bb3e3e;
         }
       }
+      &.green {
+        span {
+          color: #2fff00;
+        }
+      }
       font-size: 18px;
       &_percent {
         color: var(--red);

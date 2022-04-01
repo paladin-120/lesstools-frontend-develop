@@ -193,7 +193,11 @@ const PairInfoBody: React.FC<IPairInfoBodyProps> = observer(
                 </div>
                 <div
                   data-tip={`${new BigNumber(tbr.derivedETH).toFormat(18)} ${otherToken?.symbol}`}
-                  className={`${s.card_body__info} ${tokenPrice24HoursChange < 0 ? s.red : ''}`}
+                  className={`${s.card_body__info} ${
+                    tokenPrice24HoursChange < 0
+                      ? s.red
+                      : (tokenPrice24HoursChange > 0 && s.green) || ''
+                  }`}
                 >
                   <span>
                     (24h:{' '}
