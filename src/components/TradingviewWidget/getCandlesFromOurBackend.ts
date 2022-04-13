@@ -13,25 +13,14 @@ export const resolutionsForOurBackend = {
   '1W': 'week',
 };
 
-export const resolutionToCandlesAmount = {
-  '1': 30000,
-  '3': 20000,
-  '5': 15000,
-  '15': 10000,
-  '30': 750,
-  '60': 1440,
-  '120': 10800,
-  '240': 1800,
-  '1D': 1800,
-  '1W': 1800,
-};
 type TimeIntervals = '1' | '3' | '5' | '15' | '30' | '60' | '120' | '240' | '1D' | '1W';
 
 interface IGetCandlesFromOurBackendProps {
   pair_id: string;
   pool: string;
   time_interval: TimeIntervals;
-  candles?: number;
+  from?: any;
+  to?: any;
 }
 
 interface ICandleFromBackend {
@@ -58,32 +47,46 @@ export const getCandlesFromOurBackend = async (data: IGetCandlesFromOurBackendPr
     pair_id: data.pair_id,
     pool: data.pool,
     time_interval: resolutionsForOurBackend[data.time_interval],
-    candles: data.candles || resolutionToCandlesAmount[data.time_interval],
+    from: `${data?.from}` || '0',
+    to: `${data?.to}` || '0',
   });
 
   const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});
   const formattedCandles: Array<IFormattedCandle> = [];
+  let oldCandle: any = null;
 
   for (let i = 0; i < candles.length; i += 1) {
     const currentCandle = candles[i];
-
-    formattedCandles.push({
-      time: currentCandle.start_time * 1000, // TradingView requires bar time in ms
-      low: currentCandle.low,
-      high: currentCandle.high,
-      open: currentCandle.open,
-      close: currentCandle.close,
-      volume: currentCandle.volume,
-    });
+    if (parseInt(currentCandle.open, 10) > 0) {
+      formattedCandles.push({
+        time: currentCandle.start_time * 1000, // TradingView requires bar time in ms
+        low: currentCandle.low,
+        high: currentCandle.high,
+        open: currentCandle.open,
+        close: currentCandle.close,
+        volume: currentCandle.volume,
+      });
+      oldCandle = currentCandle;
+    } else {
+      formattedCandles.push({
+        time: currentCandle.start_time * 1000, // TradingView requires bar time in ms
+        low: oldCandle?.high,
+        high: oldCandle?.high,
+        open: oldCandle?.high,
+        close: oldCandle?.high,
+        volume: 0,
+      });
+    }
   }
-
-  for (let i = 0; i < Math.floor(formattedCandles.length / 2); i += 1) {
-    const firstTime = formattedCandles[i].time;
-    formattedCandles[i].time = formattedCandles[formattedCandles.length - i - 1].time;
-    formattedCandles[formattedCandles.length - i - 1].time = firstTime;
-  }
-
-  return formattedCandles.filter((candle) => candle.open);
+  console.log(
+    'getCandlesFromOurBackend',
+    resolutionsForOurBackend[data.time_interval],
+    candles,
+    formattedCandles,
+  );
+  return formattedCandles
+    .filter((candle) => candle.open)
+    .sort((candle1, candle2) => candle1.time - candle2.time);
 };
 
 export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOurBackendProps) => {
@@ -91,7 +94,8 @@ export const getCandlesFromOurBackendNoReverse = async (data: IGetCandlesFromOur
     pair_id: data.pair_id,
     pool: data.pool,
     time_interval: resolutionsForOurBackend[data.time_interval],
-    candles: data.candles || resolutionToCandlesAmount[data.time_interval],
+    from: `${data.from}` || '0',
+    to: `${data.to}` || '0',
   });
 
   const candles: Array<ICandleFromBackend> = Object.values(candlesFromBackend?.data || {});

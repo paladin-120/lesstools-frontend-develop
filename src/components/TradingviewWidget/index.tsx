@@ -57,8 +57,30 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
       // toolbar_bg: "#1a103d",
       container_id: containerId,
       library_path: libraryPath,
+      time_frames: [
+        { text: '5y', resolution: '1W' },
+        { text: '1y', resolution: '1D' },
+        { text: '6m', resolution: '120' },
+        { text: '3m', resolution: '60' },
+        { text: '1m', resolution: '30' },
+        { text: '5d', resolution: '5' },
+        { text: '1d', resolution: '1' },
+      ],
       locale: getLanguageFromURL() || 'en',
-      disabled_features: ['use_localstorage_for_settings'],
+      disabled_features: [
+        'use_localstorage_for_settings',
+        'border_around_the_chart',
+        'timeframes_toolbar',
+        'header_saveload',
+        'pane_context_menu',
+        'header_symbol_search',
+        'symbol_search_hot_key',
+        'header_undo_redo',
+        'header_compare',
+        'header_screenshot',
+        // "header_settings",
+        // "header_indicators",
+      ],
       charts_storage_url: chartsStorageUrl,
       charts_storage_api_version: chartsStorageApiVersion,
       theme: 'dark',
@@ -67,9 +89,21 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
       fullscreen,
       autosize,
       studies_overrides: studiesOverrides,
+      auto_save_delay: 5,
       custom_css_url: './styles.css',
       overrides: {
         'mainSeriesProperties.style': 1,
+
+        // Candles
+        //	'mainSeriesProperties.candleStyle.upColor': '#589065',
+        //	'mainSeriesProperties.candleStyle.downColor': '#AE4E54',
+        //	'mainSeriesProperties.candleStyle.drawWick': true,
+        //	'mainSeriesProperties.candleStyle.wickUpColor:': '#AE4E54',
+        //	'mainSeriesProperties.candleStyle.wickDownColor': '#AE4E54',
+        //	'mainSeriesProperties.candleStyle.drawBorder': true,
+        //	'mainSeriesProperties.candleStyle.borderUpColor': '#589065',
+        //	'mainSeriesProperties.candleStyle.borderDownColor': '#AE4E54',
+
         'paneProperties.backgroundType': 'solid',
         'paneProperties.background': '#000000',
         'paneProperties.vertGridProperties.color': '#000000',
@@ -77,6 +111,8 @@ const TradingviewWidget: React.FC<InterfaceTradingviewWidgetProps> = React.memo(
         'scalesProperties.textColor': '#AAA',
         'scalesProperties.lineColor': '#ffffff',
         'scalesProperties.backgroundColor': '#000000',
+
+        'paneProperties.legendProperties.showLegend': false,
       },
     };
 

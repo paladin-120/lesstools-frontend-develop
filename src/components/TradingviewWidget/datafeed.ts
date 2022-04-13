@@ -61,6 +61,7 @@ export default {
     onErrorCallback: any = () => {},
   ) {
     const { from, to, firstDataRequest } = periodParams;
+    console.log('getBars - 1', resolution, symbolInfo, from, to, firstDataRequest);
     historyProvider
       .getBars(symbolInfo, resolution, from, to, firstDataRequest, null)
       .then((bars) => {
@@ -88,14 +89,16 @@ export default {
     }
 
     window.interval = setInterval(async function () {
+      const currentTimestamp = Date.now() / 1000;
       const data = await getCandlesFromOurBackendNoReverse({
         pair_id,
         pool,
-        candles: 2,
         time_interval: resolution,
+        from: `${parseInt(`${currentTimestamp - 61}`, 10)}`,
+        to: `${parseInt(`${currentTimestamp}`, 10)}`,
       });
       console.log(data);
-      onRealtimeCallback(data[0]);
+      onRealtimeCallback(data[1]);
     }, 1000 * 60); // 60s update interval
   },
 

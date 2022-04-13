@@ -68,10 +68,11 @@ type IGetFavoritesOfUser = {
 };
 
 type ICandlesDataFromOurBackend = {
-  candles: number;
   pair_id: string;
   pool: string;
   time_interval: string;
+  from: string;
+  to: string;
 };
 
 class BackendService {
@@ -211,7 +212,10 @@ class BackendService {
   getCandlesFromOurBackned = async (data: ICandlesDataFromOurBackend) => {
     try {
       const res = await this.axios.get(
-        `/analytics/candles/${data.pair_id}&${data.pool}&${data.time_interval}&${data.candles}`,
+        `/analytics/candles/${data.pair_id}&${data.pool}&${data.time_interval}&${data.from}&${data.to}`,
+      );
+      console.log(
+        `URL - /analytics/candles/${data.pair_id}&${data.pool}&${data.time_interval}&${data.from}&${data.to}`,
       );
       return res;
     } catch (error) {
