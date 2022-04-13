@@ -57,7 +57,7 @@ export const getCandlesFromOurBackend = async (data: IGetCandlesFromOurBackendPr
 
   for (let i = 0; i < candles.length; i += 1) {
     const currentCandle = candles[i];
-    if (parseInt(currentCandle.open, 10) > 0) {
+    if (parseFloat(currentCandle.open) > 0) {
       formattedCandles.push({
         time: currentCandle.start_time * 1000, // TradingView requires bar time in ms
         low: currentCandle.low,
